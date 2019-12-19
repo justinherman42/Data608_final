@@ -1,0 +1,49 @@
+---
+title: "Introduction"
+author: "Justin Herman"
+date: "12/10/2019"
+output: html_document
+---
+
+## Overview
+
+This dashbaord is meant to accompany a capstone project my classmates and I collaborated on for our CUNY SPS Data Science Graduate Program. My group members were Vikas Sinha and Meaghan Burke. The project attempts to explore Bias in the media through an NLP analysis of major US news publications. Our focus was on how the media may present diverging coverage of the 2020 democratic primary field. We thought the primaries presented a unique  oppurtunity to explore bias, as it divorces coverage from the typcial left right dicothomy.  Can we discover how  left leaning publications may attempt to weigh the scales in their preferred direction? If so, how does that bias express itself? 
+
+
+
+## Publications Explored
+
+A sentiment score was developed for individual mentions of select candidates in publications spanning the political spectrum.  The overall sentiment or bias score, was the ratio of positive to negative sentiments. A sentiment was defined as a single sentence that mentioned the candidate exclusively. More details on the development of the bias score can be found in the methodolgy section. The publications explored were as follows: 
+
++ The New York Times
++ The Washington post
++ The Wall Street Journal
++ New York Magazine
++ MSNBC
++ Google News
++ Fox News
++ CNN
++ Breitbart News
+
+
+## Candidates Explored:
+
+**Joe Biden**
+
+![](https://raw.githubusercontent.com/justinherman42/data608/master/images/Biden.PNG)   <dd>Joseph Robinette Biden Jr.is an American politician who served as the 47th vice president of the United States from 2009 to 2017. Biden also represented Delaware in the U.S. Senate from 1973 to 2009. A member of the Democratic Party, Biden is a candidate for president in the 2020 election, having unsuccessfully sought the Democratic presidential nomination in 1988 and in 2008..</dd>  
+<br/><br/>
+**Bernie Sanders**
+
+![](https://raw.githubusercontent.com/justinherman42/data608/master/images/Bernie.PNG)  <dd>Bernard Sanders is an American politician who has served as the junior United States Senator from Vermont since 2007. Vermont's at-large Congressman from 1991 to 2007, he is the longest serving independent in U.S. congressional history and a member of the Democratic caucus. A self-described democratic socialist and progressive, Sanders is known for his opposition to economic inequality.</dd>
+<br/><br/>
+**Elizabeth Warren**
+
+![](https://raw.githubusercontent.com/justinherman42/data608/master/images/Warren.PNG)  <dd>Elizabeth Ann Warren is an American politician and former academic, serving as the senior United States Senator from Massachusetts since 2013. She was formerly a law-school professor specializing in bankruptcy law. A member of the Democratic Party and a self-described progressive, Warren has focused on consumer protection, economic opportunity, and the social safety net while in the Senate.</dd>
+<br/><br/>
+**Kamala Harris**
+
+![](https://raw.githubusercontent.com/justinherman42/data608/master/images/Kamala.PNG) <dd>Kamala Devi Harris is an American lawyer and politician serving as the junior United States Senator from California since 2017. A member of the Democratic Party, she previously served as the 27th District Attorney of San Francisco from 2004 to 2011 and 32nd Attorney General of California from 2011 until 2017. She ran as a candidate for the Democratic nomination for President of the United States in the 2020 election, before dropping out on December 3, 2019.</dd>
+
+
+
+

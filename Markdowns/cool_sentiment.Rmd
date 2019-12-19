@@ -1,0 +1,103 @@
+---
+title: "cool sentiment"
+author: "Justin Herman"
+date: "12/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Sentiment Scores by Publication 
+
+Alternative visualization from interactive plotly graph.
+
+<img src="https://raw.githubusercontent.com/justinherman42/data608/master/images/a.png" alt="drawing" width="600"/>
+
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE,width=2000}
+# df <- read.csv("final_proj_df.csv")
+# library(dslabs)
+# 
+# library(shinydashboard)
+# library(readr)
+# library(ggplot2)
+# library(dplyr)
+# library(plotly)
+# library(shiny)
+# library(tidyr)
+# library(tm)
+# library(SnowballC)
+# library(wordcloud)
+# library(RColorBrewer)
+# library(RCurl)
+# library(XML)
+# library(wordcloud)
+# library(rquery)
+# library("ggplot2")
+# library("ggimage")
+# colnames(df) <- c("Index","Publication","Candidate","Positive","Negative","Score")
+# df <- df %>% 
+#     filter(Publication!="Bloomberg")
+# 
+# df2 <- df
+# df$source1 <- "Publication"
+# df2$source1 <- "Candidate"
+# df <- as.data.frame(rbind(df,df2))
+# df$cand_image <- paste('C:\\Users\\justin\\Desktop\\cand_images\\',df$Candidate,".PNG", sep="")
+# df$Publication_image <- paste('C:\\Users\\justin\\Desktop\\cand_images\\',df$Publication,".PNG", sep="")
+# 
+# 
+# a <- df%>%
+#     ggplot() +
+#     # remove axes and superfluous grids
+#     theme_classic() +
+#     theme(axis.title = element_blank(),
+#           axis.ticks.y = element_blank(),
+#           axis.line = element_blank()) +
+#     # add a dummy point for scaling purposes
+#     geom_point(aes(x =.7, y = Publication), 
+#                size = 0, col = "white") + 
+#     
+#     # add the horizontal discipline lines
+#     geom_hline(yintercept = 1:9, col = "grey80") +
+#     
+#     # add a point for each male success rate
+#     # geom_point(aes(x = Score, y =  !!sym(input$Choice), colour = Score >.5,label =Publication,label2=Candidate, 
+#     #                   size = Positive)) +
+#     geom_image(aes(x = Score, y =  Publication,image=cand_image), size=.1)
+# #  scale_colour_manual(name = 'Score > .5', values = setNames(c('green','red'),c(T, F)))
+#         ggsave('a.png')
+        
+```
+
+## Sentiment Scores by Candidate 
+
+<img src="https://raw.githubusercontent.com/justinherman42/data608/master/images/b.png" alt="drawing" width="600"/>
+
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+# b <- df%>%
+#     ggplot() +
+#     # remove axes and superfluous grids
+#     theme_classic() +
+#     theme(axis.title = element_blank(),
+#           axis.ticks.y = element_blank(),
+#           axis.line = element_blank()) +
+#     # add a dummy point for scaling purposes
+#     geom_point(aes(x =.7, y = Candidate), 
+#                size = 0, col = "white") + 
+#     
+#     # add the horizontal discipline lines
+#     geom_hline(yintercept = 1:9, col = "grey80") +
+#     
+#     # add a point for each male success rate
+#     # geom_point(aes(x = Score, y =  !!sym(input$Choice), colour = Score >.5,label =Publication,label2=Candidate, 
+#     #                   size = Positive)) +
+#     geom_image(aes(x = Score, y =  Candidate,image=Publication_image), size=.1)
+# 
+# 
+# ggsave('b.png')
+```
+

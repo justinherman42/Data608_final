@@ -1,0 +1,19 @@
+---
+title: "Scoring"
+author: "Justin Herman"
+date: "12/10/2019"
+output:
+  html_document:
+    theme: "simplex"
+    highlight: 'pygments'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Below you can see sentiment score by either publication level or candidate level. The filter options are in the side dashboard. Plots are interactive and display additional information about the datapoint when you scroll over any point. In the side dashboard you have options to change the graph from candidate to publication level.  When doing so, make sure to also change the coloring from Publication to candidate
+<br/><br/><br/><br/>
+
+**The scoring is from least positive on the left to most positive on the right**
+

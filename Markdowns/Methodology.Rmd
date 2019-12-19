@@ -1,0 +1,94 @@
+---
+title: "analysis"
+author: "Justin Herman"
+date: "12/10/2019"
+output: 
+  html_document:
+     css: font-awesome-4.4.0/css/font-awesome.css
+     self_contained: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r b, echo=F}
+  writeLines("td, th { padding : 6px } 
+             th { background-color : coral ; 
+                  color : white; 
+                  border : 1px solid white; } 
+             td { color : black ; 
+                  border : 1px solid skyblue }
+             h1, h2, h3, h4, h5, p { font-family: consolas; ",
+             con = "mystyle.css")
+```
+  
+
+
+##  Data acquisition 
+The data was collected over several months from August - November of 2019. The first step of the pipeline was to acquire links to articles which matched specific query terms through the NewsAPI located [here]( https://newsapi.org/docs/get-started). The API has a Python module where users can make up to 500 requests a day, searching over 120 news publications. Our Query terms attempted to search for each candidate. For example, Bernie/ Bernie Sanders produced results for any article which mentioned either search term.  This resulted in thousands of potential articles across the different publications. 
+
+The newsAPI limited article text to the first 200 words. The second step of our pipeline solved this issue.  The [Newspaper3kAPI](https://newspaper.readthedocs.io/en/latest/) collects full text from articles given specific links.  We simpy query the NEWSAPI, grab all  the meta data we want including links to the articles, feed those links into the Newspaper3k library, and concatenate the results  
+
+## Data processing 
+
+
+
+Each article was given unique identifiers to track Publications, Authors, dates and other metadata. From here we developed a script to search through every single sentence and identify sentences with candidate mentions.  Sentences with multiple candidate mentions were mostly excluded from the dataset. If you would like to see the code for this process, see our GitHub [here](https://github.com/mburke65/Data_698_Final/blob/master/code/naive_sent_analysis.ipynb)
+
+## Model Training 
+
+Unfortunately, there aren't many reliable datasets out there which score media articles. We decided to use a movie review database containing 25,000 previously classified negative and positive reviews as the base dataset for training our algorithm.  The idea here is that negative and positive sentiment in common vocabulary usage mimics the lexicon used by most publications.  Most journalists speak in a more deliberate tone than move reviewers, but none the less, the hope is they are similar enough for transfer learning.  
+
+## Bias Score
+
+The Bias score was simply an aggregated ratio of all positive versus negative mentions for a candidate. Mentions were sentence level. Defining bias in this way is intuitive and can be easily interpreted by the general public. The vocabulary used for scoring consisted of the 5,000 most important words used to score the movie review database.     
+
+## Vocabulary 
+
+The model was trained exclusively on adjectives. As we are exploring language directed at proper nouns, we thought this would help with more accurate scoring. Below You can see a list of the most important words according to the model to classify a mention as negative or positive.
+
+
+
+
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+neg_words <- c(rep(NA,26))
+pos_words <- c(rep(NA,26))
+sentiments <- read.csv("Sentiment_scores.csv",stringsAsFactors = FALSE)
+colnames(sentiments) <- c("word","sentiment")
+neg_words2 <- sentiments %>% 
+    filter(sentiment=="n")
+pos_words2 <-     sentiments %>% 
+    filter(sentiment!="n")
+Negative_words <- c(neg_words2$word)
+Positive_words <- c(pos_words2$word)
+Negative_words[25] <- " "
+Negative_words[26] <-  " "
+my_df <- as.data.frame(cbind(Negative_words,Positive_words))
+
+
+```
+
+
+**Top Polarizing Words**
+
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
+kable(my_df, booktabs = T)%>%
+kable_styling(latex_options = "striped")
+```
+
+<br/><br/><br/><br/>
+
+
+
+Overall over 5k words are used to score the model
+
+
+
+
+

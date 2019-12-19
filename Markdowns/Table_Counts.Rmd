@@ -1,0 +1,126 @@
+---
+title: "Table_counts"
+author: "Justin Herman"
+date: "12/14/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The below graphs display total article counts per candidate by publication.  This count includes any article which mentions the candidate
+    
+```{r,echo=FALSE,message=FALSE,warning=FALSE,fig.width=15,fig.height=10}
+
+library(kableExtra)
+library(knitr)
+library(xlsx)
+library(tidyverse)
+library(gridExtra)
+library(grid)
+
+article_counts <- read.csv("article_counts2.csv",sep = ":",header = FALSE,fileEncoding = 'UTF-8-BOM')
+aspect_ratio <- 2.5
+height <- 7
+
+
+
+colnames(article_counts) <- c("Candidate","Publication","Count")
+# kable(article_counts, caption = "Group Rows") %>%
+
+
+
+
+candidate_article_counts <- ggplot(data=article_counts, aes(x=Publication,y=Count)) +
+  geom_bar(stat="identity") +
+  facet_wrap(~Candidate) +
+  ggtitle("Candidate Article Counts by Publication ") +
+  theme(plot.title = element_text(family="Trebuchet MS", face="bold", size=20, hjust=0, color="#555555")) +
+  theme(axis.text.x = element_text(angle=90))
+#ggsave(candidate_article_counts, height = 20 , width = 20 * aspect_ratio)
+
+publication_article_counts <- ggplot(data=article_counts, aes(x=Candidate,y=Count)) +
+  geom_bar(stat="identity") +
+  facet_wrap(~Publication) +
+ ggtitle("Publication Article Counts by Candidate") +
+  theme(plot.title = element_text(family="Trebuchet MS", face="bold", size=20, hjust=0, color="#555555")) +
+  theme(axis.text.x = element_text(angle=90))
+
+grid.arrange(arrangeGrob(candidate_article_counts,publication_article_counts, ncol=2, nrow=1),
+          heights=c(8,1), widths=c(2))
+
+```
+
+
+Unfortunately, while we attempted to collect the same amount of data from each publication, certain publications received many more hits via the API queries.  Part of this may have to do with the publication's coverage, but part could have been discarded and lost when the API couldn't clearly ingest the text from the articles.  Overall the Washington Post, Breitbart News, CNN, and Fox News received the most coverage. The New York Times, New York Magazine, and MSNBC received a moderate amount of coverage. Google News, Bloomberg, and The Wall Street Journal received very little coverage.  
+
+
+In terms of candidate level coverage, Biden had a significant advantage in news coverage.  Biden received more coverage than the other three candidates in CNN, Fox News, and MSNBC coverage and was only slightly eclipsed by the total of all other candidates in Breitbart News, The New York Times, The Wall Street Journal and The Washington Post.  As Biden is the front runner in the race, it's difficult to label coverage disparity as bias, but it shows how the media can at least influence perceived voter expectations by matching coverage to electoral expectations.  
+
+**Tabulated article counts**
+
+
+
+
+
+
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+
+
+article_counts <- article_counts %>% 
+    select(Candidate,Count) 
+ 
+dd1 <- ggplot() + annotation_custom(tableGrob(article_counts[1:4, 1:2]))+ 
+ ggtitle("Bloomberg")+
+ theme(plot.title = element_text(hjust = 0.5))
+dd2 <- ggplot() + annotation_custom(tableGrob(article_counts[5:8, 1:2])) + 
+     ggtitle("Breitbart")+
+ theme(plot.title = element_text(hjust = 0.5))
+
+dd3 <- ggplot() + annotation_custom(tableGrob(article_counts[9:12, 1:2])) + 
+    ggtitle("CNN")+
+ theme(plot.title = element_text(hjust = 0.5))
+
+dd4 <- ggplot() + annotation_custom(tableGrob(article_counts[13:16, 1:2])) + 
+    ggtitle("Fox News")+
+    theme(plot.title = element_text(hjust = 0.5))
+
+dd5 <- ggplot() + annotation_custom(tableGrob(article_counts[17:20, 1:2])) + 
+    ggtitle("Google News")+
+    theme(plot.title = element_text(hjust = 0.5))
+
+dd6 <- ggplot() + annotation_custom(tableGrob(article_counts[21:24, 1:2])) + 
+    ggtitle("MSNBC")+
+    theme(plot.title = element_text(hjust = 0.5))
+
+dd7 <- ggplot() + annotation_custom(tableGrob(article_counts[25:28, 1:2])) + 
+    ggtitle("New York Magazine")+
+    theme(plot.title = element_text(hjust = 0.5))
+
+dd8 <- ggplot() + annotation_custom(tableGrob(article_counts[29:32, 1:2])) + 
+    ggtitle("New York Times")+
+    theme(plot.title = element_text(hjust = 0.5))
+
+dd9 <- ggplot() + annotation_custom(tableGrob(article_counts[33:36, 1:2])) + 
+    ggtitle("Wall Street Journal")+
+    theme(plot.title = element_text(hjust = 0.5))
+
+dd10 <- ggplot() + annotation_custom(tableGrob(article_counts[37:40, 1:2])) + 
+    ggtitle("Washington Post")+
+    theme(plot.title = element_text(hjust = 0.5))
+
+
+#labs(title = 'Bloomberg',hjust = 0.8)
+#dd2 <- ggplot() + annotation_custom(tableGrob(article_counts[5:8, 1:2])) + labs(title = 'Breitbart',hjust = 0.5)
+#dd3 <- ggplot() + annotation_custom(tableGrob(article_counts[9:12, 1:2])) + labs(title = 'CNN',hjust = 0.5)
+#dd4 <- ggplot() + annotation_custom(tableGrob(article_counts[13:16, 1:2])) + labs(title = 'Fox News',hjust = 0.5)
+# dd5 <- ggplot() + annotation_custom(tableGrob(article_counts[17:20, 1:2])) + labs(title = 'Google News',hjust = 0.5)
+# dd6 <- ggplot() + annotation_custom(tableGrob(article_counts[21:24, 1:2])) + labs(title = 'MSNBC',hjust = 0.5)
+# dd7 <- ggplot() + annotation_custom(tableGrob(article_counts[25:28, 1:2])) + labs(title = 'New York Magazine',hjust = 0.5)
+# dd8 <- ggplot() + annotation_custom(tableGrob(article_counts[29:32, 1:2])) + labs(title = 'New York Times',hjust = 0.5)
+# dd9 <- ggplot() + annotation_custom(tableGrob(article_counts[33:36, 1:2])) + labs(title = "Wall Street Journal",hjust = 0.5)
+# dd10 <- ggplot() + annotation_custom(tableGrob(article_counts[37:40, 1:2])) + labs(title = 'Washingotn Post',hjust = 0.5)
+grid.arrange(dd1, dd2,dd3, dd4, dd5, dd6 , dd7, dd8, dd9, dd10, nrow = 3)
+```

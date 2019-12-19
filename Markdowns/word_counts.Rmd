@@ -1,0 +1,173 @@
+---
+title: "Word_counts"
+author: "Justin Herman"
+date: "12/15/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Counts by Candidate for most polarizing words
+
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+# library(tidyverse)
+# library(knitr)
+# library(kableExtra)
+# library(DT)
+# library(data.table)
+# df <- read.csv("word_freq_counts3.csv")
+# 
+# 
+# 
+# bernie <- df %>% 
+#     filter(X.1== "Bernie") %>% 
+#     summarize_if(is.numeric, sum, na.rm=TRUE)%>% 
+#     t(.)
+# biden <- df %>% 
+#     filter(X.1== "Biden") %>% 
+#     summarize_if(is.numeric, sum, na.rm=TRUE)%>% 
+#     t(.)
+# Kamala <- df %>% 
+#     filter(X.1== "Kamala") %>% 
+#     summarize_if(is.numeric, sum, na.rm=TRUE)%>% 
+#     t(.)
+# Warren <- df %>% 
+#     filter(X.1== "Warren") %>% 
+#     summarize_if(is.numeric, sum, na.rm=TRUE) %>% 
+#     t(.)
+# colnames(Warren) <-  "Warren_Counts"
+# colnames(Kamala) <-  "Kamala_Counts"
+# colnames(biden) <-  "Biden_Counts"
+# colnames(bernie) <-  "Bernie_Counts"
+# df_2 <- as.data.frame(cbind(bernie,biden,Kamala,Warren))
+# kable(df_2[1:50,], booktabs = T)%>%
+#     kable_styling(latex_options = "striped")
+# 
+# 
+# #write.csv(df_2,"word_counts2.csv")
+# Breitbart_News <- df %>% 
+#     filter(X== "Breitbart News") %>% 
+#     summarize_if(is.numeric, sum, na.rm=TRUE)%>% 
+#     t(.)
+# CNN <- df %>% 
+#     filter(X== "CNN") %>% 
+#     summarize_if(is.numeric, sum, na.rm=TRUE)%>% 
+#     t(.)
+# Fox_News <- df %>% 
+#     filter(X== "Fox News") %>% 
+#     summarize_if(is.numeric, sum, na.rm=TRUE)%>% 
+#     t(.)
+# MSNBC <- df %>% 
+#     filter(X== "MSNBC") %>% 
+#     summarize_if(is.numeric, sum, na.rm=TRUE) %>% 
+#     t(.)
+# The_New_York_Times <- df %>% 
+#     filter(X== "The New York Times") %>% 
+#     summarize_if(is.numeric, sum, na.rm=TRUE) %>% 
+#     t(.)
+# The_Washington_Post <- df %>% 
+#     filter(X== "The Washington Post") %>% 
+#     summarize_if(is.numeric, sum, na.rm=TRUE) %>% 
+#     t(.)
+# 
+# 
+# colnames(Breitbart_News) <-  "Breitbart_News_Counts"
+# colnames(CNN) <-  "CNN_Counts"
+# colnames(Fox_News) <-  "Fox_News_Counts"
+# colnames(MSNBC) <-  "MSNBC_Counts"
+# colnames(The_New_York_Times) <-  "The_New_York_Times_Counts"
+# colnames(The_Washington_Post) <-  "The_Washington_Post_Counts"
+# 
+# # 
+# 
+# df_3 <- as.data.frame(cbind(Breitbart_News,CNN,Kamala,Fox_News,MSNBC,The_New_York_Times,The_Washington_Post))
+```
+
+## Counts by Publication for most polarizing words
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+# 
+# 
+# kable(df_3[1:50,], booktabs = T)%>%
+#     kable_styling(latex_options = "striped")
+```
+
+
+
+```{r,eval=F}
+# library(xlsx)
+# library(tidyverse)
+# article_counts <- read.csv("article_counts2.csv",sep = ":",header = FALSE,fileEncoding = 'UTF-8-BOM')
+# kable(article_counts, booktabs = T)%>%
+# kable_styling(latex_options = "striped")
+# library(kableExtra)
+# library(knitr)
+# #gsub('^...','',colnames(df)[1])
+# article_counts <- article_counts %>% 
+#     select(V1,V3)
+# colnames(article_counts) <- c("Cand","Count")
+# kable(article_counts, caption = "Group Rows") %>%
+#   kable_styling("striped", full_width = F) %>%
+#     group_rows("Bloomberg", 1, 4) %>%
+#     group_rows("Breitbart News", 5, 8) %>%
+#     group_rows("CNN", 9, 12) %>%
+#     group_rows("Fox News", 13, 16) %>%
+#     group_rows("Google News", 17, 20) %>%
+#     group_rows("MSNBC", 21, 24) %>%
+#     group_rows("New York Magazine ", 25, 28) %>%
+#     group_rows("The New York Times", 29, 32) %>%
+#     group_rows("The Wall Street Journal", 33, 36) %>% 
+#     group_rows("The Washington Post", 37, 40)
+#%>%
+#    group_rows("Group 10", 37, 40)
+# ggplot(data=article_counts, aes(x=Candidate,y=ArticleCount, group=1)) +
+#   geom_line() +
+#   facet_grid(Publication ~ .)
+# 
+# ggplot(data=article_counts, aes(x=Publication,y=ArticleCount)) +
+#   geom_bar(stat="identity") +
+#   facet_wrap(~Candidate) +
+#   ggtitle("Small Multiples in R") +
+#   theme(plot.title = element_text(family="Trebuchet MS", face="bold", size=20, hjust=0, color="#555555")) +
+#   theme(axis.text.x = element_text(angle=90)) 
+# 
+# ggplot(data=article_counts, aes(x=Candidate,y=ArticleCount)) +
+#   geom_bar(stat="identity") +
+#   facet_wrap(~Publication) +
+#   ggtitle("Small Multiples in R") +
+#   theme(plot.title = element_text(family="Trebuchet MS", face="bold", size=20, hjust=0, color="#555555")) +
+#   theme(axis.text.x = element_text(angle=90)) 
+# 
+# candidates_list <- c("Biden","Sanders","kamala","Harris")
+# for (x in candidates_list){
+#     my_df <- article_counts %>% 
+#         filter(Candidate=x)
+# }
+
+# 
+# library(gridExtra)
+# library(grid)
+# tt1 <- ttheme_default()
+# tt2 <- ttheme_minimal()
+# grid.arrange(
+#   tableGrob(article_counts[1:4, 1:2], theme=tt1),
+#   tableGrob(article_counts[5:8, 1:2], theme=tt1),
+#   tableGrob(article_counts[9:12, 1:2], theme=tt1),
+#   nrow=1)
+# 
+# 
+# dd1 <- ggplot() + annotation_custom(tableGrob(article_counts[1:4, 1:2])) + labs(title = 'Bloomberg',hjust = 0.5)
+# dd2 <- ggplot() + annotation_custom(tableGrob(article_counts[5:8, 1:2])) + labs(title = 'Breitbart',hjust = 0.5)
+# dd3 <- ggplot() + annotation_custom(tableGrob(article_counts[9:12, 1:2])) + labs(title = 'CNN',hjust = 0.5)
+# dd4 <- ggplot() + annotation_custom(tableGrob(article_counts[13:16, 1:2])) + labs(title = 'Fox News',hjust = 0.5)
+# dd5 <- ggplot() + annotation_custom(tableGrob(article_counts[17:20, 1:2])) + labs(title = 'Google News',hjust = 0.5)
+# dd6 <- ggplot() + annotation_custom(tableGrob(article_counts[21:24, 1:2])) + labs(title = 'MSNBC',hjust = 0.5)
+# dd7 <- ggplot() + annotation_custom(tableGrob(article_counts[25:28, 1:2])) + labs(title = 'New York Magazine',hjust = 0.5)
+# dd8 <- ggplot() + annotation_custom(tableGrob(article_counts[29:32, 1:2])) + labs(title = 'New York Times',hjust = 0.5)
+# dd9 <- ggplot() + annotation_custom(tableGrob(article_counts[33:36, 1:2])) + labs(title = "Wall Street Journal",hjust = 0.5)
+# dd10 <- ggplot() + annotation_custom(tableGrob(article_counts[37:40, 1:2])) + labs(title = 'Washingotn Post',hjust = 0.5)
+# grid.arrange(dd1, dd2,dd3, dd4, dd5, dd6 , dd7, dd8, dd9, dd10, nrow = 3)
+```

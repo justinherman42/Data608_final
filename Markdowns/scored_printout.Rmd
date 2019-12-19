@@ -1,0 +1,29 @@
+---
+title: "scored_printout"
+author: "Justin Herman"
+date: "12/11/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE,warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+<br/><br/><br/><br/>
+
+## Results 
+On a candidate level, it appears Biden gets more positive coverage across the board.  Warren and Bernie get similar coverage which is centered several points below the former Vice President's overall sentiment.  Please see scorecard below for exactly counts and scores. 
+
+## Overall Scoring
+
+Below You can see a static image which displays results numerically
+
+![](https://raw.githubusercontent.com/justinherman42/data608/master/images/Results.png)
+
+
+
+
+
+
+

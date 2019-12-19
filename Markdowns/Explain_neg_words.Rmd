@@ -1,0 +1,14 @@
+---
+title: "Explain_neg_words"
+author: "Justin Herman"
+date: "12/17/2019"
+output: html_document
+---
+
+## Exploring Model's Negative Vocabulary
+
+The tables below are sortable.  The Vocabulary consists of the first 2000 words used in our model.  The counts are how many times those words are observed in candidate mentions. The table on the top displays counts by candidate.  The table below that gives counts by publication.  Feel free to sort by candidate and then search for particular words.  Doing so allows you to see  publications may be using certain vocabulary to describe candidates
+
+
+
+
